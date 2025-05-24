@@ -71,5 +71,17 @@ RSpec.describe StringCalculator do
         )
       end
     end
+
+    context 'edge cases' do
+      it 'handles zero values' do
+        expect(calculator.add("0")).to eq(0)
+        expect(calculator.add("0,0")).to eq(0)
+        expect(calculator.add("1,0,2")).to eq(3)
+      end
+
+      it 'handles large numbers' do
+        expect(calculator.add("100,200,300")).to eq(600)
+      end
+    end
   end
 end
