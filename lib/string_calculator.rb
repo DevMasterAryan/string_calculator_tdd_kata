@@ -7,6 +7,6 @@ class StringCalculator
   private
 
   def parse_number numbers
-    numbers.to_i
+    numbers.split(',').map(&:to_i).sum
   end
 end
