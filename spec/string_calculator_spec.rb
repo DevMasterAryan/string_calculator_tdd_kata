@@ -1,5 +1,5 @@
 require 'rspec'
-require_relative 'string_calculator'
+require_relative '../lib/string_calculator'
 
 RSpec.describe StringCalculator do
   let(:calculator) { StringCalculator.new }
