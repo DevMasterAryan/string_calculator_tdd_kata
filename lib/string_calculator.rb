@@ -4,6 +4,7 @@ class StringCalculator
 
     delimiter, number_string = parse_delimiter_and_numbers(numbers)
     number_array = split_numbers(number_string, delimiter)
+    validate_no_negatives(number_array)
     number_array.sum
   end
 
@@ -23,5 +24,13 @@ class StringCalculator
     normalized_string = number_string.gsub("\n", delimiter)
 
     normalized_string.split(delimiter).map(&:to_i)
+  end
+
+  def validate_no_negatives(numbers)
+    negatives = numbers.select { |n| n < 0 }
+
+    unless negatives.empty?
+      raise ArgumentError, "negative numbers not allowed: #{negatives.join(', ')}"
+    end
   end
 end
