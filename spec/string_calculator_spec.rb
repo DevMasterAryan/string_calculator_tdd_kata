@@ -30,5 +30,26 @@ RSpec.describe StringCalculator do
         expect(calculator.add("1,2,3,4,5")).to eq(15)
       end
     end
+
+    context 'with newlines between numbers' do
+      it 'handles newlines as delimiters' do
+        expect(calculator.add("1\n2,3")).to eq(6)
+        expect(calculator.add("1\n2\n3")).to eq(6)
+      end
+    end
+
+    context 'with custom delimiters' do
+      it 'handles semicolon delimiter' do
+        expect(calculator.add("//;\n1;2")).to eq(3)
+      end
+
+      it 'handles pipe delimiter' do
+        expect(calculator.add("//|\n1|2|3")).to eq(6)
+      end
+
+      it 'handles asterisk delimiter' do
+        expect(calculator.add("//*\n1*2*3")).to eq(6)
+      end
+    end
   end
 end
