@@ -1,0 +1,53 @@
+# .rubocop.yml
+require:
+  - rubocop-rspec
+
+AllCops:
+  TargetRubyVersion: 3.0
+  NewCops: enable
+  Exclude:
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+
+# Documentation
+Style/Documentation:
+  Enabled: true
+
+# Line length - be reasonable for kata
+Layout/LineLength:
+  Max: 100
+
+# Method length - keep methods focused
+Metrics/MethodLength:
+  Max: 15
+
+# Class length - reasonable for kata
+Metrics/ClassLength:
+  Max: 150
+
+# Allow blocks in RSpec
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*_spec.rb'
+
+# String literals
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+# Frozen string literal
+Style/FrozenStringLiteralComment:
+  Enabled: true
+
+# RSpec specific configurations
+RSpec/ExampleLength:
+  Max: 10
+
+RSpec/MultipleExpectations:
+  Max: 3
+
+RSpec/NestedGroups:
+  Max: 4
+
+# Allow describe with strings for better readability
+RSpec/DescribeClass:
+  Enabled: false
