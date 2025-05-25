@@ -26,7 +26,7 @@ jobs:
       run: bundle exec rspec --format html --out rspec_results.html
 
     - name: Upload test results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       if: always()
       with:
         name: rspec-results
