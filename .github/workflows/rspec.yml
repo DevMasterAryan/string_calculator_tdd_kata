@@ -1,0 +1,51 @@
+name: Ruby Checks
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run tests with HTML report
+      run: bundle exec rspec --format html --out rspec_results.html
+
+    - name: Upload test results
+      uses: actions/upload-artifact@v3
+      if: always()
+      with:
+        name: rspec-results
+        path: rspec_results.html
+
+  rubocop:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Set up Ruby
+      uses: ruby/setup-ruby@v1
+      with:
+        ruby-version: '3.2'
+        bundler-cache: true
+
+    - name: Install dependencies
+      run: bundle install
+
+    - name: Run RuboCop
+      run: bundle exec rubocop
